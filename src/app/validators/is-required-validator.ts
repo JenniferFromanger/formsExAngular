@@ -7,10 +7,10 @@ export function isRequiredValidator(id: any, title: string): ValidatorFn {
     // Get second control value
     const checkTitle = control.get(title).value;
 
-    if (checkId === '' || checkTitle === '') {
-      return { isRequired: { actual: '', expected: id || title } };
-    } else {
+    if ((checkTitle !== '' && checkTitle !== ' ') || checkId > 0) {
       return null;
+    } else {
+      return { isRequired: { actual: '', expected: 'not null' } };
     }
   };
 }
