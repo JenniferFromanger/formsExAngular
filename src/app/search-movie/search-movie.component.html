@@ -1,0 +1,80 @@
+<div class="row" style="margin: auto">
+  <div class="col-sm-8 col-sm-offset-2" style="padding: auto; margin: auto">
+    <form
+      (ngSubmit)="movieForm.valid && onSubmit()"
+      [formGroup]="movieForm"
+      #myForm="ngForm"
+    >
+      <div>
+        Form submitted ? {{ myForm.submitted }} Form valid ?
+        {{ myForm.valid }} Form invalid ? {{ myForm.valid }}
+      </div>
+      <div formGroupName="titleId">
+        <div class="form-group">
+          <label for="id">Identifiant</label>
+          <input
+            class="form-control"
+            name="id"
+            type="number"
+            formControlName="id"
+          />
+          <div *ngIf="movieForm.controls.titleId.errors">
+            <span *ngIf="movieForm.controls.titleId.errors.isRequired"
+              >Le champ identifiant ou titre est requis</span
+            >
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="title">Titre</label>
+          <input
+            class="form-control"
+            name="title"
+            type="text"
+            formControlName="title"
+          />
+          <div *ngIf="movieForm.controls.titleId.errors">
+            <span *ngIf="movieForm.controls.titleId.errors.isRequired"
+              >Le champ identifiant ou titre est requis</span
+            >
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="type">Type</label>
+        <select id="type" class="form-control" formControlName="type">
+          <option selected value="série">série</option>
+          <option value="film">film</option>
+          <option value="épisode">Episode</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="release-year">Année de sortie</label>
+        <input
+          class="form-control"
+          name="release-year"
+          type="number"
+          formControlName="releaseYear"
+        />
+        <div *ngIf="movieForm.controls.releaseYear.errors">
+          <span *ngIf="movieForm.controls.releaseYear.errors.required"
+            >Le champ année de sortie est requis</span
+          >
+          <span *ngIf="movieForm.controls.releaseYear.errors.min"
+            >L'année de sortie doit être comprise entre
+            {{ movieForm.controls.releaseYear.errors.min.minimale }} et
+            {{ movieForm.controls.releaseYear.errors.min.maximale }}'</span
+          >
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="fiche">Fiche</label>
+        <select id="fiche" class="form-control" formControlName="fiche">
+          <option value="courte">courte</option>
+          <option value="complète">complète</option>
+        </select>
+      </div>
+      <button type="reset" class="btn btn-link">Restaurer</button>
+      <button type="submit" class="btn btn-primary">Sauvegarder</button>
+    </form>
+  </div>
+</div>
